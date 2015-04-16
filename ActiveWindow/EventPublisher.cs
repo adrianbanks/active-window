@@ -11,12 +11,13 @@ namespace ActiveWindow
 {
     internal sealed class EventPublisher
     {
-        private readonly Logger logger = LogManager.GetLogger("publishedEvents");
+        private readonly Logger logger;
         private readonly ApplicationSettings applicationSettings;
         private readonly UserSettings userSettings;
 
-        public EventPublisher(ApplicationSettings applicationSettings, UserSettings userSettings)
+        public EventPublisher(Logger logger, ApplicationSettings applicationSettings, UserSettings userSettings)
         {
+            this.logger = logger;
             this.applicationSettings = applicationSettings;
             this.userSettings = userSettings;
         }

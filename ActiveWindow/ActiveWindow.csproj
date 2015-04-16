@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LoggerFactory.cs" />
     <Compile Include="Polling\ActiveWindowPoller.cs" />
     <Compile Include="Polling\WindowPolling.cs" />
     <Compile Include="Settings\Application\ApplicationSettings.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Windows\ForegroundWindowInfoFactory.cs" />
     <None Include="NLog.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
