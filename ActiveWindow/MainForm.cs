@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using ActiveWindow.Settings.User;
 
 namespace ActiveWindow
@@ -10,6 +11,8 @@ namespace ActiveWindow
         public MainForm(UserSettingsSaver settingsSaver, UserSettings settings)
         {
             InitializeComponent();
+            PostInitializeComponent();
+
             this.settingsSaver = settingsSaver;
 
             streamIdTextBox.Text = settings.StreamId;
@@ -19,7 +22,14 @@ namespace ActiveWindow
             longitudeTextBox.Text = settings.Longitude;
         }
 
-        private void saveButton_Click(object sender, System.EventArgs e)
+        private void PostInitializeComponent()
+        {
+            notifyIcon.Text = this.Text;
+            optionsMenuItem.Click += optionsMenuItem_Click;
+            exitMenuItem.Click += exitMenuItem_Click;
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
         {
             var settings = new UserSettings
             {
@@ -33,9 +43,33 @@ namespace ActiveWindow
             settingsSaver.Save(settings);
         }
 
-        private void locateButton_Click(object sender, System.EventArgs e)
+        private void locateButton_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Not yet implemented");
+        }
+
+        private void optionsMenuItem_Click(object sender, EventArgs args)
+        {
+            if (!Visible)
+            {
+                this.ShowInTaskbar = true;
+            }
+
+            Show();
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                Hide();
+            }
+        }
+
+        private void exitMenuItem_Click(object sender, EventArgs args)
+        {
+            Application.Exit();
         }
     }
 }

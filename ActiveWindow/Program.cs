@@ -18,7 +18,6 @@ namespace ActiveWindow
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             var mainForm = new MainForm(new UserSettingsSaver(), userSettings);
-
             Application.Run(mainForm);
         }
 
