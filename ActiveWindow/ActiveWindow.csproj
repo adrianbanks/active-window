@@ -61,12 +61,13 @@
     <Compile Include="LoggerFactory.cs" />
     <Compile Include="Polling\ActiveWindowPoller.cs" />
     <Compile Include="Polling\WindowPolling.cs" />
+    <Compile Include="Publishing\StreamSettingsValidator.cs" />
     <Compile Include="Settings\Application\ApplicationSettings.cs" />
     <Compile Include="Settings\Application\ApplicationSettingsLoader.cs" />
     <Compile Include="Settings\User\UserSettings.cs" />
     <Compile Include="Settings\User\UserSettingsLoader.cs" />
     <Compile Include="Settings\User\UserSettingsSaver.cs" />
-    <Compile Include="EventPublisher.cs" />
+    <Compile Include="Publishing\EventPublisher.cs" />
     <Compile Include="Windows\ForegroundWindowInfo.cs" />
     <Compile Include="Windows\ForegroundWindowInfoEqualityComparer.cs" />
     <Compile Include="MainForm.cs">

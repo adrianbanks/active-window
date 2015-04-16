@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using ActiveWindow.Polling;
+using ActiveWindow.Publishing;
 using ActiveWindow.Settings.Application;
 using ActiveWindow.Settings.User;
 using ActiveWindow.Windows;
@@ -24,9 +25,9 @@ namespace ActiveWindow
         private static void StartPolling(UserSettings userSettings)
         {
             var applicationSettings = new ApplicationSettingsLoader().Load();
-
             var logger = new LoggerFactory().GetLogger();
-            var eventPublisher = new EventPublisher(logger, applicationSettings, userSettings);
+            var streamSettingsValidator = new StreamSettingsValidator(userSettings);
+            var eventPublisher = new EventPublisher(logger, applicationSettings, userSettings, streamSettingsValidator);
             var foregroundWindowInfoFactory = new ForegroundWindowInfoFactory();
             var foregroundWindowInfoEqualityComparer = new ForegroundWindowInfoEqualityComparer();
             var poller = new ActiveWindowPoller(applicationSettings, eventPublisher, foregroundWindowInfoFactory, foregroundWindowInfoEqualityComparer);

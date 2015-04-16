@@ -7,23 +7,31 @@ using ActiveWindow.Settings.User;
 using Newtonsoft.Json.Linq;
 using NLog;
 
-namespace ActiveWindow
+namespace ActiveWindow.Publishing
 {
     internal sealed class EventPublisher
     {
         private readonly Logger logger;
         private readonly ApplicationSettings applicationSettings;
         private readonly UserSettings userSettings;
+        private readonly StreamSettingsValidator streamSettingsValidator;
 
-        public EventPublisher(Logger logger, ApplicationSettings applicationSettings, UserSettings userSettings)
+        public EventPublisher(Logger logger, ApplicationSettings applicationSettings, UserSettings userSettings, StreamSettingsValidator streamSettingsValidator)
         {
             this.logger = logger;
             this.applicationSettings = applicationSettings;
             this.userSettings = userSettings;
+            this.streamSettingsValidator = streamSettingsValidator;
         }
 
         public void PublishEvent(Action<JObject> setPropertiesCallback)
         {
+            if (!streamSettingsValidator.RelevantSettingsPresent())
+            {
+                logger.Info("Not publishing event - stream properties not set");
+                return;
+            }
+
             logger.Info("Publishing event...");
 
             var activityEvent = new JObject();
