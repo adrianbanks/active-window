@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using ActiveWindow.Settings.Application;
+﻿using ActiveWindow.Settings.Application;
 using ActiveWindow.Windows;
 using Microsoft.Win32;
 using Newtonsoft.Json.Linq;
@@ -11,15 +10,17 @@ namespace ActiveWindow.Polling
         private readonly ApplicationSettings applicationSettings;
         private readonly EventPublisher eventPublisher;
         private readonly ForegroundWindowInfoFactory foregroundWindowInfoFactory;
+        private readonly ForegroundWindowInfoEqualityComparer equalityComparer;
 
         private ForegroundWindowInfo previousActiveWindow;
         private bool isComputerLocked;
 
-        public ActiveWindowPoller(ApplicationSettings applicationSettings, EventPublisher eventPublisher, ForegroundWindowInfoFactory foregroundWindowInfoFactory)
+        public ActiveWindowPoller(ApplicationSettings applicationSettings, EventPublisher eventPublisher, ForegroundWindowInfoFactory foregroundWindowInfoFactory, ForegroundWindowInfoEqualityComparer equalityComparer)
         {
             this.applicationSettings = applicationSettings;
             this.eventPublisher = eventPublisher;
             this.foregroundWindowInfoFactory = foregroundWindowInfoFactory;
+            this.equalityComparer = equalityComparer;
             SystemEvents.SessionSwitch += SystemEvents_SessionSwitch;
         }
 
@@ -32,7 +33,7 @@ namespace ActiveWindow.Polling
 
             var foregroundWindowInfo = foregroundWindowInfoFactory.Create();
 
-            if (!EqualityComparer<ForegroundWindowInfo>.Default.Equals(foregroundWindowInfo, previousActiveWindow))
+            if (!equalityComparer.Equals(foregroundWindowInfo, previousActiveWindow))
             {
                 eventPublisher.PublishEvent(properties => SetApplicablePropertyValues(properties, foregroundWindowInfo));
                 previousActiveWindow = foregroundWindowInfo;

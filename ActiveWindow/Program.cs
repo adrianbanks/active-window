@@ -27,7 +27,9 @@ namespace ActiveWindow
 
             var logger = new LoggerFactory().GetLogger();
             var eventPublisher = new EventPublisher(logger, applicationSettings, userSettings);
-            var poller = new ActiveWindowPoller(applicationSettings, eventPublisher, new ForegroundWindowInfoFactory());
+            var foregroundWindowInfoFactory = new ForegroundWindowInfoFactory();
+            var foregroundWindowInfoEqualityComparer = new ForegroundWindowInfoEqualityComparer();
+            var poller = new ActiveWindowPoller(applicationSettings, eventPublisher, foregroundWindowInfoFactory, foregroundWindowInfoEqualityComparer);
 
             WindowPolling.Start(userSettings, poller);
         }
