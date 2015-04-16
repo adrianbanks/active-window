@@ -113,7 +113,7 @@
             0});
             this.pollingIntervalNumericUpDown.Name = "pollingIntervalNumericUpDown";
             this.pollingIntervalNumericUpDown.Size = new System.Drawing.Size(53, 22);
-            this.pollingIntervalNumericUpDown.TabIndex = 1;
+            this.pollingIntervalNumericUpDown.TabIndex = 0;
             this.pollingIntervalNumericUpDown.Value = new decimal(new int[] {
             10,
             0,
@@ -131,7 +131,7 @@
             groupBox2.Location = new System.Drawing.Point(12, 12);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new System.Drawing.Size(405, 88);
-            groupBox2.TabIndex = 2;
+            groupBox2.TabIndex = 0;
             groupBox2.TabStop = false;
             groupBox2.Text = "1self Settings";
             // 
@@ -142,7 +142,7 @@
             this.writeTokenTextBox.Location = new System.Drawing.Point(97, 53);
             this.writeTokenTextBox.Name = "writeTokenTextBox";
             this.writeTokenTextBox.Size = new System.Drawing.Size(302, 22);
-            this.writeTokenTextBox.TabIndex = 3;
+            this.writeTokenTextBox.TabIndex = 1;
             // 
             // streamIdTextBox
             // 
@@ -151,7 +151,7 @@
             this.streamIdTextBox.Location = new System.Drawing.Point(97, 25);
             this.streamIdTextBox.Name = "streamIdTextBox";
             this.streamIdTextBox.Size = new System.Drawing.Size(302, 22);
-            this.streamIdTextBox.TabIndex = 2;
+            this.streamIdTextBox.TabIndex = 0;
             // 
             // label4
             // 
@@ -183,7 +183,7 @@
             groupBox3.Location = new System.Drawing.Point(12, 164);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new System.Drawing.Size(405, 84);
-            groupBox3.TabIndex = 4;
+            groupBox3.TabIndex = 2;
             groupBox3.TabStop = false;
             groupBox3.Text = "Location";
             // 
@@ -208,10 +208,10 @@
             // locateButton
             // 
             this.locateButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.locateButton.Location = new System.Drawing.Point(317, 46);
+            this.locateButton.Location = new System.Drawing.Point(317, 49);
             this.locateButton.Name = "locateButton";
             this.locateButton.Size = new System.Drawing.Size(75, 23);
-            this.locateButton.TabIndex = 1;
+            this.locateButton.TabIndex = 2;
             this.locateButton.Text = "Locate";
             this.locateButton.UseVisualStyleBackColor = true;
             this.locateButton.Click += new System.EventHandler(this.locateButton_Click);
@@ -223,7 +223,7 @@
             this.longitudeTextBox.Location = new System.Drawing.Point(83, 49);
             this.longitudeTextBox.Name = "longitudeTextBox";
             this.longitudeTextBox.Size = new System.Drawing.Size(228, 22);
-            this.longitudeTextBox.TabIndex = 0;
+            this.longitudeTextBox.TabIndex = 1;
             // 
             // latitudeTextBox
             // 
