@@ -24,12 +24,54 @@ namespace ActiveWindow
 
         private void PostInitializeComponent()
         {
-            notifyIcon.Text = this.Text;
+            notifyIcon.Text = Text;
             optionsMenuItem.Click += optionsMenuItem_Click;
             exitMenuItem.Click += exitMenuItem_Click;
         }
 
         private void saveButton_Click(object sender, EventArgs e)
+        {
+            SaveSettings();
+        }
+
+        private void locateButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Not yet implemented");
+        }
+
+        private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            ShowWindow();
+        }
+
+        private void optionsMenuItem_Click(object sender, EventArgs args)
+        {
+            ShowWindow();
+        }
+
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Minimized)
+            {
+                ShowInTaskbar = false;
+            }
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                HideWindow();
+            }
+        }
+
+        private void exitMenuItem_Click(object sender, EventArgs args)
+        {
+            Application.Exit();
+        }
+
+        private void SaveSettings()
         {
             var settings = new UserSettings
             {
@@ -43,33 +85,21 @@ namespace ActiveWindow
             settingsSaver.Save(settings);
         }
 
-        private void locateButton_Click(object sender, EventArgs e)
+        private void HideWindow()
         {
-            MessageBox.Show("Not yet implemented");
+            Hide();
+            ShowInTaskbar = false;
         }
 
-        private void optionsMenuItem_Click(object sender, EventArgs args)
+        private void ShowWindow()
         {
-            if (!Visible)
+            if (WindowState == FormWindowState.Minimized)
             {
-                this.ShowInTaskbar = true;
+                WindowState = FormWindowState.Normal;
             }
 
             Show();
-        }
-
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (e.CloseReason == CloseReason.UserClosing)
-            {
-                e.Cancel = true;
-                Hide();
-            }
-        }
-
-        private void exitMenuItem_Click(object sender, EventArgs args)
-        {
-            Application.Exit();
+            ShowInTaskbar = true;
         }
     }
 }
