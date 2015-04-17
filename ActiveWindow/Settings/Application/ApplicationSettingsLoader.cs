@@ -22,9 +22,7 @@ namespace ActiveWindow.Settings.Application
 
                 SessionEventObjectTags = GetTags(appSettings, "1selfEvent_SessionEvent_ObjectTags"),
                 SessionEventLockedActionTags = GetTags(appSettings, "1selfEvent_SessionEvent_Locked_ActionTags"),
-                SessionEventLockedMessage = appSettings["1selfEvent_SessionEvent_Locked_Message"],
-                SessionEventUnlockedActionTags = GetTags(appSettings, "1selfEvent_SessionEvent_Unlocked_ActionTags"),
-                SessionEventUnlockedMessage = appSettings["1selfEvent_SessionEvent_Unlocked_Message"],
+                SessionEventUnlockedActionTags = GetTags(appSettings, "1selfEvent_SessionEvent_Unlocked_ActionTags")
             };
         }
 

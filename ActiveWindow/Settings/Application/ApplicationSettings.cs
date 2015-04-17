@@ -10,9 +10,7 @@
         public string WindowEventProcessPropertyName { get; set; }
 
         public string[] SessionEventObjectTags { get; set; }
-        public string SessionEventLockedMessage { get; set; }
         public string[] SessionEventLockedActionTags { get; set; }
-        public string SessionEventUnlockedMessage { get; set; }
         public string[] SessionEventUnlockedActionTags { get; set; }
     }
 }

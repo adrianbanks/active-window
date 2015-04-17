@@ -63,13 +63,13 @@ namespace ActiveWindow.Polling
             {
                 isComputerLocked = true;
                 var actionTags = applicationSettings.SessionEventLockedActionTags.Cast<object>().ToArray();
-                eventPublisher.PublishEvent(objectTags, actionTags, properties => properties[applicationSettings.WindowEventTitlePropertyName] = applicationSettings.SessionEventLockedMessage);
+                eventPublisher.PublishEvent(objectTags, actionTags, properties => { });
             }
             else if (e.Reason == SessionSwitchReason.SessionUnlock)
             {
                 isComputerLocked = false;
                 var actionTags = applicationSettings.SessionEventUnlockedActionTags.Cast<object>().ToArray();
-                eventPublisher.PublishEvent(objectTags, actionTags, properties => properties[applicationSettings.WindowEventTitlePropertyName] = applicationSettings.SessionEventUnlockedMessage);
+                eventPublisher.PublishEvent(objectTags, actionTags, properties => { });
             }
         }
     }
