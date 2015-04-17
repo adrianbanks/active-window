@@ -15,6 +15,7 @@ namespace ActiveWindow.Publishing
         private readonly ApplicationSettings applicationSettings;
         private readonly UserSettings userSettings;
         private readonly StreamSettingsValidator streamSettingsValidator;
+        private int eventCount;
 
         public EventPublisher(Logger logger, ApplicationSettings applicationSettings, UserSettings userSettings, StreamSettingsValidator streamSettingsValidator)
         {
@@ -32,7 +33,7 @@ namespace ActiveWindow.Publishing
                 return;
             }
 
-            logger.Info("Publishing event...");
+            logger.Info("Publishing event ({0})...", ++eventCount);
 
             var activityEvent = new JObject();
             activityEvent["dateTime"] = DateTime.Now.ToString("o");
