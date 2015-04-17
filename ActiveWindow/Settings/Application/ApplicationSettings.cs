@@ -4,13 +4,15 @@
     {
         public string PublishingUrlFormat { get; set; }
 
-        public string TitlePropertyName { get; set; }
-        public string ProcessPropertyName { get; set; }
+        public string[] WindowEventObjectTags { get; set; }
+        public string[] WindowEventActionTags { get; set; }
+        public string WindowEventTitlePropertyName { get; set; }
+        public string WindowEventProcessPropertyName { get; set; }
 
-        public string SessionLockedMessage { get; set; }
-        public string SessionUnlockedMessage { get; set; }
-
-        public string[] ObjectTags { get; set; }
-        public string[] ActionTags { get; set; }
+        public string[] SessionEventObjectTags { get; set; }
+        public string SessionEventLockedMessage { get; set; }
+        public string[] SessionEventLockedActionTags { get; set; }
+        public string SessionEventUnlockedMessage { get; set; }
+        public string[] SessionEventUnlockedActionTags { get; set; }
     }
 }

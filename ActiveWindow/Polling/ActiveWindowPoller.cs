@@ -1,4 +1,5 @@
-﻿using ActiveWindow.Publishing;
+﻿using System.Linq;
+using ActiveWindow.Publishing;
 using ActiveWindow.Settings.Application;
 using ActiveWindow.Windows;
 using Microsoft.Win32;
@@ -36,7 +37,9 @@ namespace ActiveWindow.Polling
 
             if (!equalityComparer.Equals(foregroundWindowInfo, previousActiveWindow))
             {
-                eventPublisher.PublishEvent(properties => SetApplicablePropertyValues(properties, foregroundWindowInfo));
+                var objectTags = applicationSettings.WindowEventObjectTags.Cast<object>().ToArray();
+                var actionTags = applicationSettings.WindowEventActionTags.Cast<object>().ToArray();
+                eventPublisher.PublishEvent(objectTags, actionTags, properties => SetApplicablePropertyValues(properties, foregroundWindowInfo));
                 previousActiveWindow = foregroundWindowInfo;
             }
         }
@@ -45,25 +48,28 @@ namespace ActiveWindow.Polling
         {
             if (!string.IsNullOrWhiteSpace(foregroundWindowInfo.Path))
             {
-                properties[applicationSettings.ProcessPropertyName] = foregroundWindowInfo.Path;
+                properties[applicationSettings.WindowEventProcessPropertyName] = foregroundWindowInfo.Path;
             }
 
-            properties[applicationSettings.TitlePropertyName] = foregroundWindowInfo.WindowTitle;
+            properties[applicationSettings.WindowEventTitlePropertyName] = foregroundWindowInfo.WindowTitle;
         }
 
         private void SystemEvents_SessionSwitch(object sender, SessionSwitchEventArgs e)
         {
             previousActiveWindow = null;
+            var objectTags = applicationSettings.SessionEventObjectTags.Cast<object>().ToArray();
 
             if (e.Reason == SessionSwitchReason.SessionLock)
             {
                 isComputerLocked = true;
-                eventPublisher.PublishEvent(properties => properties[applicationSettings.TitlePropertyName] = applicationSettings.SessionLockedMessage);
+                var actionTags = applicationSettings.SessionEventLockedActionTags.Cast<object>().ToArray();
+                eventPublisher.PublishEvent(objectTags, actionTags, properties => properties[applicationSettings.WindowEventTitlePropertyName] = applicationSettings.SessionEventLockedMessage);
             }
             else if (e.Reason == SessionSwitchReason.SessionUnlock)
             {
                 isComputerLocked = false;
-                eventPublisher.PublishEvent(properties => properties[applicationSettings.TitlePropertyName] = applicationSettings.SessionUnlockedMessage);
+                var actionTags = applicationSettings.SessionEventUnlockedActionTags.Cast<object>().ToArray();
+                eventPublisher.PublishEvent(objectTags, actionTags, properties => properties[applicationSettings.WindowEventTitlePropertyName] = applicationSettings.SessionEventUnlockedMessage);
             }
         }
     }

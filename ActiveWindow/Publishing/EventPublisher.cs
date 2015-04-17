@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using ActiveWindow.Settings.Application;
@@ -25,7 +24,7 @@ namespace ActiveWindow.Publishing
             this.streamSettingsValidator = streamSettingsValidator;
         }
 
-        public void PublishEvent(Action<JObject> setPropertiesCallback)
+        public void PublishEvent(object[] objectTags, object[] actionTags, Action<JObject> setPropertiesCallback)
         {
             if (!streamSettingsValidator.RelevantSettingsPresent())
             {
@@ -37,8 +36,8 @@ namespace ActiveWindow.Publishing
 
             var activityEvent = new JObject();
             activityEvent["dateTime"] = DateTime.Now.ToString("o");
-            activityEvent["objectTags"] = new JArray(applicationSettings.ObjectTags.Cast<object>().ToArray());
-            activityEvent["actionTags"] = new JArray(applicationSettings.ActionTags.Cast<object>().ToArray());
+            activityEvent["objectTags"] = new JArray(objectTags);
+            activityEvent["actionTags"] = new JArray(actionTags);
 
             SetLocation(activityEvent);
 
