@@ -39,8 +39,6 @@ namespace ActiveWindow.Publishing
             activityEvent["objectTags"] = new JArray(objectTags);
             activityEvent["actionTags"] = new JArray(actionTags);
 
-            SetLocation(activityEvent);
-
             JObject properties = new JObject();
             setPropertiesCallback(properties);
             activityEvent["properties"] = properties;
@@ -67,18 +65,6 @@ namespace ActiveWindow.Publishing
                     logger.Info("Error publishing event", exception);
                 }
             });
-        }
-
-        private void SetLocation(JObject activityEvent)
-        {
-            if (!string.IsNullOrWhiteSpace(userSettings.Latitude)
-                && !string.IsNullOrWhiteSpace(userSettings.Longitude))
-            {
-                var location = new JObject();
-                location["lat"] = userSettings.Latitude;
-                location["long"] = userSettings.Longitude;
-                activityEvent["location"] = location;
-            }
         }
     }
 }

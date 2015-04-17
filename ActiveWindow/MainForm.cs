@@ -18,8 +18,6 @@ namespace ActiveWindow
             streamIdTextBox.Text = settings.StreamId;
             writeTokenTextBox.Text = settings.WriteToken;
             pollingIntervalNumericUpDown.Value = settings.PollingIntervalInSeconds;
-            latitudeTextBox.Text = settings.Latitude;
-            longitudeTextBox.Text = settings.Longitude;
         }
 
         private void PostInitializeComponent()
@@ -77,9 +75,7 @@ namespace ActiveWindow
             {
                 StreamId = streamIdTextBox.Text,
                 WriteToken = writeTokenTextBox.Text,
-                PollingIntervalInSeconds = (int) pollingIntervalNumericUpDown.Value,
-                Latitude = latitudeTextBox.Text,
-                Longitude = longitudeTextBox.Text
+                PollingIntervalInSeconds = (int) pollingIntervalNumericUpDown.Value
             };
 
             settingsSaver.Save(settings);

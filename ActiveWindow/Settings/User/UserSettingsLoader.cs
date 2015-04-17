@@ -10,9 +10,7 @@
             {
                 StreamId = defaultSettings.oneSelf_StreamId,
                 WriteToken = defaultSettings.oneSelf_WriteToken,
-                PollingIntervalInSeconds = defaultSettings.pollingInterval_Seconds,
-                Latitude = defaultSettings.location_latitude,
-                Longitude = defaultSettings.location_longitude,
+                PollingIntervalInSeconds = defaultSettings.pollingInterval_Seconds
             };
         }
     }

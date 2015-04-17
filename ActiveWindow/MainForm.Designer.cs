@@ -35,16 +35,10 @@
             System.Windows.Forms.GroupBox groupBox2;
             System.Windows.Forms.Label label4;
             System.Windows.Forms.Label label3;
-            System.Windows.Forms.GroupBox groupBox3;
-            System.Windows.Forms.Label label6;
-            System.Windows.Forms.Label label5;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.pollingIntervalNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.writeTokenTextBox = new System.Windows.Forms.TextBox();
             this.streamIdTextBox = new System.Windows.Forms.TextBox();
-            this.locateButton = new System.Windows.Forms.Button();
-            this.longitudeTextBox = new System.Windows.Forms.TextBox();
-            this.latitudeTextBox = new System.Windows.Forms.TextBox();
             this.saveButton = new System.Windows.Forms.Button();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.optionsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,13 +50,9 @@
             groupBox2 = new System.Windows.Forms.GroupBox();
             label4 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
-            groupBox3 = new System.Windows.Forms.GroupBox();
-            label6 = new System.Windows.Forms.Label();
-            label5 = new System.Windows.Forms.Label();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pollingIntervalNumericUpDown)).BeginInit();
             groupBox2.SuspendLayout();
-            groupBox3.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -182,80 +172,10 @@
             label3.TabIndex = 0;
             label3.Text = "Stream Id";
             // 
-            // groupBox3
-            // 
-            groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            groupBox3.Controls.Add(label6);
-            groupBox3.Controls.Add(label5);
-            groupBox3.Controls.Add(this.locateButton);
-            groupBox3.Controls.Add(this.longitudeTextBox);
-            groupBox3.Controls.Add(this.latitudeTextBox);
-            groupBox3.Location = new System.Drawing.Point(9, 133);
-            groupBox3.Margin = new System.Windows.Forms.Padding(2);
-            groupBox3.Name = "groupBox3";
-            groupBox3.Padding = new System.Windows.Forms.Padding(2);
-            groupBox3.Size = new System.Drawing.Size(338, 68);
-            groupBox3.TabIndex = 2;
-            groupBox3.TabStop = false;
-            groupBox3.Text = "Location";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new System.Drawing.Point(4, 42);
-            label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            label6.Name = "label6";
-            label6.Size = new System.Drawing.Size(54, 13);
-            label6.TabIndex = 2;
-            label6.Text = "Longitude";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new System.Drawing.Point(4, 20);
-            label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(45, 13);
-            label5.TabIndex = 2;
-            label5.Text = "Latitude";
-            // 
-            // locateButton
-            // 
-            this.locateButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.locateButton.Location = new System.Drawing.Point(259, 38);
-            this.locateButton.Margin = new System.Windows.Forms.Padding(2);
-            this.locateButton.Name = "locateButton";
-            this.locateButton.Size = new System.Drawing.Size(75, 23);
-            this.locateButton.TabIndex = 2;
-            this.locateButton.Text = "Locate";
-            this.locateButton.UseVisualStyleBackColor = true;
-            this.locateButton.Click += new System.EventHandler(this.locateButton_Click);
-            // 
-            // longitudeTextBox
-            // 
-            this.longitudeTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.longitudeTextBox.Location = new System.Drawing.Point(62, 40);
-            this.longitudeTextBox.Margin = new System.Windows.Forms.Padding(2);
-            this.longitudeTextBox.Name = "longitudeTextBox";
-            this.longitudeTextBox.Size = new System.Drawing.Size(193, 20);
-            this.longitudeTextBox.TabIndex = 1;
-            // 
-            // latitudeTextBox
-            // 
-            this.latitudeTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.latitudeTextBox.Location = new System.Drawing.Point(62, 17);
-            this.latitudeTextBox.Margin = new System.Windows.Forms.Padding(2);
-            this.latitudeTextBox.Name = "latitudeTextBox";
-            this.latitudeTextBox.Size = new System.Drawing.Size(193, 20);
-            this.latitudeTextBox.TabIndex = 0;
-            // 
             // saveButton
             // 
             this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveButton.Location = new System.Drawing.Point(273, 210);
+            this.saveButton.Location = new System.Drawing.Point(273, 136);
             this.saveButton.Margin = new System.Windows.Forms.Padding(2);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
@@ -296,8 +216,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(359, 244);
-            this.Controls.Add(groupBox3);
+            this.ClientSize = new System.Drawing.Size(359, 170);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(groupBox2);
             this.Controls.Add(groupBox1);
@@ -314,8 +233,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pollingIntervalNumericUpDown)).EndInit();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
-            groupBox3.ResumeLayout(false);
-            groupBox3.PerformLayout();
             this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -327,9 +244,6 @@
         private System.Windows.Forms.TextBox writeTokenTextBox;
         private System.Windows.Forms.TextBox streamIdTextBox;
         private System.Windows.Forms.Button saveButton;
-        private System.Windows.Forms.Button locateButton;
-        private System.Windows.Forms.TextBox longitudeTextBox;
-        private System.Windows.Forms.TextBox latitudeTextBox;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem optionsMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitMenuItem;

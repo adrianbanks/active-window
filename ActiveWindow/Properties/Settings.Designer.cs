@@ -58,29 +58,5 @@ namespace ActiveWindow.Properties {
                 this["pollingInterval_Seconds"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string location_latitude {
-            get {
-                return ((string)(this["location_latitude"]));
-            }
-            set {
-                this["location_latitude"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string location_longitude {
-            get {
-                return ((string)(this["location_longitude"]));
-            }
-            set {
-                this["location_longitude"] = value;
-            }
-        }
     }
 }

@@ -8,8 +8,6 @@ namespace ActiveWindow.Settings.User
             defaultSettings.oneSelf_StreamId = settings.StreamId;
             defaultSettings.oneSelf_WriteToken = settings.WriteToken;
             defaultSettings.pollingInterval_Seconds = settings.PollingIntervalInSeconds;
-            defaultSettings.location_latitude = settings.Latitude;
-            defaultSettings.location_longitude = settings.Longitude;
             defaultSettings.Save();
         }
     }
