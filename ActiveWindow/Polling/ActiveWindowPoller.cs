@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using ActiveWindow.Publishing;
 using ActiveWindow.Settings.Application;
 using ActiveWindow.Windows;
@@ -15,7 +16,7 @@ namespace ActiveWindow.Polling
         private readonly ForegroundWindowInfoEqualityComparer equalityComparer;
 
         private ForegroundWindowInfo previousActiveWindow;
-        private bool isComputerLocked;
+        private DateTime? sessionLockedAt;
 
         public ActiveWindowPoller(ApplicationSettings applicationSettings, EventPublisher eventPublisher, ForegroundWindowInfoFactory foregroundWindowInfoFactory, ForegroundWindowInfoEqualityComparer equalityComparer)
         {
@@ -28,7 +29,7 @@ namespace ActiveWindow.Polling
 
         public void Poll()
         {
-            if (isComputerLocked)
+            if (sessionLockedAt.HasValue)
             {
                 return;
             }
@@ -61,15 +62,16 @@ namespace ActiveWindow.Polling
 
             if (e.Reason == SessionSwitchReason.SessionLock)
             {
-                isComputerLocked = true;
+                sessionLockedAt = DateTime.Now;
                 var actionTags = applicationSettings.SessionEventLockedActionTags.Cast<object>().ToArray();
                 eventPublisher.PublishEvent(objectTags, actionTags, properties => { });
             }
             else if (e.Reason == SessionSwitchReason.SessionUnlock)
             {
-                isComputerLocked = false;
+                var lockedDuration = DateTime.Now - sessionLockedAt;
+                sessionLockedAt = null;
                 var actionTags = applicationSettings.SessionEventUnlockedActionTags.Cast<object>().ToArray();
-                eventPublisher.PublishEvent(objectTags, actionTags, properties => { });
+                eventPublisher.PublishEvent(objectTags, actionTags, properties => properties["duration"] = lockedDuration.ToString());
             }
         }
     }
