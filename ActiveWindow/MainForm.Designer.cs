@@ -36,6 +36,7 @@
             System.Windows.Forms.Label label4;
             System.Windows.Forms.Label label3;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            System.Windows.Forms.GroupBox groupBox3;
             this.pollingIntervalNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.writeTokenTextBox = new System.Windows.Forms.TextBox();
             this.streamIdTextBox = new System.Windows.Forms.TextBox();
@@ -44,16 +45,20 @@
             this.optionsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.sendLockEventsCheckBox = new System.Windows.Forms.CheckBox();
+            this.sendActiveWindowEventsCheckBox = new System.Windows.Forms.CheckBox();
             label1 = new System.Windows.Forms.Label();
             groupBox1 = new System.Windows.Forms.GroupBox();
             label2 = new System.Windows.Forms.Label();
             groupBox2 = new System.Windows.Forms.GroupBox();
             label4 = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
+            groupBox3 = new System.Windows.Forms.GroupBox();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pollingIntervalNumericUpDown)).BeginInit();
             groupBox2.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
+            groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -73,7 +78,7 @@
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(this.pollingIntervalNumericUpDown);
             groupBox1.Controls.Add(label1);
-            groupBox1.Location = new System.Drawing.Point(9, 86);
+            groupBox1.Location = new System.Drawing.Point(9, 160);
             groupBox1.Margin = new System.Windows.Forms.Padding(2);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new System.Windows.Forms.Padding(2);
@@ -175,7 +180,7 @@
             // saveButton
             // 
             this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveButton.Location = new System.Drawing.Point(273, 136);
+            this.saveButton.Location = new System.Drawing.Point(273, 212);
             this.saveButton.Margin = new System.Windows.Forms.Padding(2);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
@@ -212,11 +217,45 @@
             this.notifyIcon.Visible = true;
             this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
             // 
+            // sendLockEventsCheckBox
+            // 
+            this.sendLockEventsCheckBox.AutoSize = true;
+            this.sendLockEventsCheckBox.Location = new System.Drawing.Point(6, 19);
+            this.sendLockEventsCheckBox.Name = "sendLockEventsCheckBox";
+            this.sendLockEventsCheckBox.Size = new System.Drawing.Size(156, 17);
+            this.sendLockEventsCheckBox.TabIndex = 4;
+            this.sendLockEventsCheckBox.Text = "Send computer lock events";
+            this.sendLockEventsCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            groupBox3.Controls.Add(this.sendActiveWindowEventsCheckBox);
+            groupBox3.Controls.Add(this.sendLockEventsCheckBox);
+            groupBox3.Location = new System.Drawing.Point(9, 87);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new System.Drawing.Size(338, 68);
+            groupBox3.TabIndex = 5;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "groupBox3";
+            // 
+            // sendActiveWindowEvents
+            // 
+            this.sendActiveWindowEventsCheckBox.AutoSize = true;
+            this.sendActiveWindowEventsCheckBox.Location = new System.Drawing.Point(6, 42);
+            this.sendActiveWindowEventsCheckBox.Name = "sendActiveWindowEventsCheckBox";
+            this.sendActiveWindowEventsCheckBox.Size = new System.Drawing.Size(157, 17);
+            this.sendActiveWindowEventsCheckBox.TabIndex = 5;
+            this.sendActiveWindowEventsCheckBox.Text = "Send active window events";
+            this.sendActiveWindowEventsCheckBox.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(359, 170);
+            this.ClientSize = new System.Drawing.Size(359, 246);
+            this.Controls.Add(groupBox3);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(groupBox2);
             this.Controls.Add(groupBox1);
@@ -234,6 +273,8 @@
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             this.contextMenuStrip.ResumeLayout(false);
+            groupBox3.ResumeLayout(false);
+            groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -248,6 +289,8 @@
         private System.Windows.Forms.ToolStripMenuItem optionsMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitMenuItem;
         private System.Windows.Forms.NotifyIcon notifyIcon;
+        private System.Windows.Forms.CheckBox sendLockEventsCheckBox;
+        private System.Windows.Forms.CheckBox sendActiveWindowEventsCheckBox;
     }
 }
 

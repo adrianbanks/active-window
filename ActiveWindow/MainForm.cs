@@ -75,6 +75,8 @@ namespace ActiveWindow
             {
                 StreamId = streamIdTextBox.Text,
                 WriteToken = writeTokenTextBox.Text,
+                SendLockEvents = sendLockEventsCheckBox.Checked,
+                SendActiveWindowEvents = sendActiveWindowEventsCheckBox.Checked,
                 PollingIntervalInSeconds = (int) pollingIntervalNumericUpDown.Value
             };
 

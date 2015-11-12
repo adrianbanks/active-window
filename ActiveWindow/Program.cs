@@ -30,7 +30,7 @@ namespace ActiveWindow
             var eventPublisher = new EventPublisher(logger, applicationSettings, userSettings, streamSettingsValidator);
             var foregroundWindowInfoFactory = new ForegroundWindowInfoFactory();
             var foregroundWindowInfoEqualityComparer = new ForegroundWindowInfoEqualityComparer();
-            var poller = new ActiveWindowPoller(applicationSettings, eventPublisher, foregroundWindowInfoFactory, foregroundWindowInfoEqualityComparer);
+            var poller = new ActiveWindowPoller(applicationSettings, userSettings, eventPublisher, foregroundWindowInfoFactory, foregroundWindowInfoEqualityComparer);
 
             WindowPolling.Start(userSettings, poller);
         }
