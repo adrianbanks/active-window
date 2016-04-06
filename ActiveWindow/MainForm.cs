@@ -19,6 +19,8 @@ namespace ActiveWindow
 
             streamIdTextBox.Text = settings.StreamId;
             writeTokenTextBox.Text = settings.WriteToken;
+            sendLockEventsCheckBox.Checked = settings.SendLockEvents;
+            sendActiveWindowEventsCheckBox.Checked = settings.SendActiveWindowEvents;
             pollingIntervalNumericUpDown.Value = settings.PollingIntervalInSeconds;
         }
 
