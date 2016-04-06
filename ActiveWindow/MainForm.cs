@@ -13,11 +13,18 @@ namespace ActiveWindow
             InitializeComponent();
             PostInitializeComponent();
 
+            Application.Idle += Application_Idle;
+
             this.settingsSaver = settingsSaver;
 
             streamIdTextBox.Text = settings.StreamId;
             writeTokenTextBox.Text = settings.WriteToken;
             pollingIntervalNumericUpDown.Value = settings.PollingIntervalInSeconds;
+        }
+
+        private void Application_Idle(object sender, EventArgs e)
+        {
+            pollingIntervalPanel.Enabled = sendActiveWindowEventsCheckBox.Checked;
         }
 
         private void PostInitializeComponent()
