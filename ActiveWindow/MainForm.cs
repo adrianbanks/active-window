@@ -32,11 +32,6 @@ namespace ActiveWindow
             SaveSettings();
         }
 
-        private void locateButton_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Not yet implemented");
-        }
-
         private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             ShowWindow();
