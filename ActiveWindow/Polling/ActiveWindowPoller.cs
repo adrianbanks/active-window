@@ -64,7 +64,7 @@ namespace ActiveWindow.Polling
 
             var objectTags = applicationSettings.SessionEventObjectTags.Cast<object>().ToArray();
 
-            if (e.Reason == SessionSwitchReason.SessionLock)
+            if (e.Reason == SessionSwitchReason.SessionLock || e.Reason == SessionSwitchReason.RemoteDisconnect || e.Reason == SessionSwitchReason.ConsoleDisconnect)
             {
                 sessionLockedAt = DateTime.Now;
 
@@ -74,7 +74,7 @@ namespace ActiveWindow.Polling
                     eventPublisher.PublishEvent(objectTags, actionTags, properties => { });
                 }
             }
-            else if (e.Reason == SessionSwitchReason.SessionUnlock)
+            else if (e.Reason == SessionSwitchReason.SessionUnlock || e.Reason == SessionSwitchReason.RemoteConnect || e.Reason == SessionSwitchReason.ConsoleConnect)
             {
                 var lockedDuration = DateTime.Now - sessionLockedAt;
                 sessionLockedAt = null;
