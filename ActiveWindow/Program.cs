@@ -25,9 +25,11 @@ namespace ActiveWindow
         private static void StartPolling(UserSettings userSettings)
         {
             var applicationSettings = new ApplicationSettingsLoader().Load();
-            var logger = new LoggerFactory().GetLogger();
+            var loggerFactory = new LoggerFactory();
+            var applicationLogger = loggerFactory.GetApplicationLogger();
+            var dataLogger = loggerFactory.GetDataLogger();
             var streamSettingsValidator = new StreamSettingsValidator(userSettings);
-            var eventPublisher = new EventPublisher(logger, applicationSettings, userSettings, streamSettingsValidator);
+            var eventPublisher = new EventPublisher(applicationLogger, dataLogger, applicationSettings, userSettings, streamSettingsValidator);
             var foregroundWindowInfoFactory = new ForegroundWindowInfoFactory();
             var foregroundWindowInfoEqualityComparer = new ForegroundWindowInfoEqualityComparer();
             var poller = new ActiveWindowPoller(applicationSettings, userSettings, eventPublisher, foregroundWindowInfoFactory, foregroundWindowInfoEqualityComparer);

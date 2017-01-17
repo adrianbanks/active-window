@@ -4,9 +4,14 @@ namespace ActiveWindow
 {
     public class LoggerFactory
     {
-        public Logger GetLogger()
+        public Logger GetApplicationLogger()
         {
-            return LogManager.GetLogger("default");
+            return LogManager.GetLogger("application");
+        }
+
+        public Logger GetDataLogger()
+        {
+            return LogManager.GetLogger("data");
         }
     }
 }

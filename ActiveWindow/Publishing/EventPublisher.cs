@@ -10,15 +10,17 @@ namespace ActiveWindow.Publishing
 {
     internal sealed class EventPublisher
     {
-        private readonly Logger logger;
+        private readonly Logger applicationLogger;
+        private readonly Logger dataLogger;
         private readonly ApplicationSettings applicationSettings;
         private readonly UserSettings userSettings;
         private readonly StreamSettingsValidator streamSettingsValidator;
         private int eventCount;
 
-        public EventPublisher(Logger logger, ApplicationSettings applicationSettings, UserSettings userSettings, StreamSettingsValidator streamSettingsValidator)
+        public EventPublisher(Logger applicationLogger, Logger dataLogger, ApplicationSettings applicationSettings, UserSettings userSettings, StreamSettingsValidator streamSettingsValidator)
         {
-            this.logger = logger;
+            this.applicationLogger = applicationLogger;
+            this.dataLogger = dataLogger;
             this.applicationSettings = applicationSettings;
             this.userSettings = userSettings;
             this.streamSettingsValidator = streamSettingsValidator;
@@ -28,41 +30,44 @@ namespace ActiveWindow.Publishing
         {
             if (!streamSettingsValidator.RelevantSettingsPresent())
             {
-                logger.Info("Not publishing event - stream properties not set");
+                applicationLogger.Info("Not publishing event - stream properties not set");
                 return;
             }
 
-            logger.Info("Publishing event ({0})...", ++eventCount);
-
-            var activityEvent = new JObject();
-            activityEvent["dateTime"] = DateTime.Now.ToString("o");
-            activityEvent["objectTags"] = new JArray(objectTags);
-            activityEvent["actionTags"] = new JArray(actionTags);
+            applicationLogger.Info("Publishing event ({0})...", ++eventCount);
 
             JObject properties = new JObject();
             setPropertiesCallback(properties);
-            activityEvent["properties"] = properties;
+
+            var activityEvent = new JObject
+            {
+                ["dateTime"] = DateTime.Now.ToString("o"),
+                ["objectTags"] = new JArray(objectTags),
+                ["actionTags"] = new JArray(actionTags),
+                ["properties"] = properties
+            };
 
             var url = string.Format(applicationSettings.PublishingUrlFormat, userSettings.StreamId);
 
             var content = new StringContent(activityEvent.ToString(Newtonsoft.Json.Formatting.None));
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            logger.Debug("Activity event being published: {0}", activityEvent.ToString());
+            applicationLogger.Debug("Activity event being published: {0}", activityEvent.ToString());
 
             var client = new HttpClient();
             client.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", userSettings.WriteToken);
 
-            logger.Info("Publishing activity event to {0}", url);
+            applicationLogger.Info("Publishing activity event to {0}", url);
+            dataLogger.Info(activityEvent.ToString());
 
             client.PostAsync(url, content).ContinueWith(postTask =>
             {
                 try
                 {
-                    logger.Info("Event published successfully. Result: {0}", postTask.Result.StatusCode);
+                    applicationLogger.Info("Event published successfully. Result: {0}", postTask.Result.StatusCode);
                 }
                 catch (Exception exception)
                 {
-                    logger.Info("Error publishing event", exception);
+                    applicationLogger.Info("Error publishing event", exception);
                 }
             });
         }
